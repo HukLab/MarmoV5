@@ -202,7 +202,7 @@ if S.newera
         end
     end
     
-    S.pumpDiameter = 20;                % internal diameter of the juice syringe (mm)
+    S.pumpDiameter = 26;                % internal diameter of the juice syringe (mm)
 
     S.pumpRate = 20;                     % rate to deliver juice (ml/minute)
     S.pumpDefVol = 10;                % default dispensing volume (ml)
