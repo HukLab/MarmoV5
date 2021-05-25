@@ -54,7 +54,7 @@ P.holdDur = 0.10;
 S.holdDur = 'Duration at grating for reward (s):';
 P.fixRadius = 2.5;  
 S.fixRadius = 'Probe reward radius(degs):';
-P.trialdur = 10; 
+P.trialdur = 20; 
 S.trialdur = 'Trial Duration (s):';
 P.iti = 0.5;
 S.iti = 'Duration of intertrial interval (s):';
@@ -200,7 +200,7 @@ switch P.noisetype
         P.numDots = 100;
         S.numDots = 'number of dots to show on each frame:';
         
-        P.dotSize = .5;
+        P.dotSize = 1;
         S.dotSize = 'individual dot size (d.v.a):';
         
         P.noiseApertureSigma = inf;

@@ -65,9 +65,9 @@ classdef FrameControl < handle
       %*************
       o.TimeSensitive = [];  %no states time sensitive by default
       %*************
-      o.FMAX = 5000;  %capped at a Max of 5000 screen flips
+      o.FMAX;  %capped at a Max of 5000 screen flips
       o.FIELDS = 9;
-      o.FData = nan(o.FMAX,o.FIELDS);   %per trial data storage
+      o.FData;   %per trial data storage
       o.FCount = 0;
       o.c  = [0,0];
       o.dx = 1;
@@ -92,7 +92,6 @@ classdef FrameControl < handle
         %*********
         o.PInit = P;    % store parameter fields struct, never allow new fields
         %*************
-        o.FData(:) = NaN; 
         o.FCount = 0;
         %***********
         o.c = C.c;
@@ -100,7 +99,8 @@ classdef FrameControl < handle
         o.dy = C.dy;
         %**************
         o.frameRate = S.frameRate;
-        o.FMAX = ceil(60*o.frameRate); % max trial is 20 seconds, regardless of framerate
+        o.FMAX = ceil(120*o.frameRate); % max trial is 20 seconds, regardless of framerate
+        o.FData = nan(o.FMAX,o.FIELDS);
         o.centerPix = S.centerPix;
         o.pixPerDeg = S.pixPerDeg;
         

@@ -34,7 +34,7 @@ classdef treadmill_arduino < matlab.mixin.Copyable
             ip.addParameter('scaleFactor', [])
             ip.addParameter('rewardMode', 'dist')
             ip.addParameter('maxFrames', 5e3)
-            ip.addParameter('rewardDist', 94.25/2)
+            ip.addParameter('rewardDist', 94.25)
             ip.addParameter('rewardProb', 1)
             ip.parse(varargin{:});
             
@@ -82,6 +82,7 @@ classdef treadmill_arduino < matlab.mixin.Copyable
                 
                 case 'dist'
                     if self.locationSpace(self.frameCounter, 4) > self.nextReward   
+%                         tmp = double(rand < self.rewardProb);
                         self.locationSpace(self.frameCounter,5) = self.locationSpace(self.frameCounter,5) + 1; % add one drop
                         self.nextReward = self.nextReward + self.rewardDist;
                     end  
@@ -120,7 +121,6 @@ classdef treadmill_arduino < matlab.mixin.Copyable
             self.frameCounter = 1;
             self.locationSpace(:) = nan;
             IOPort('Flush', self.arduinoUno);
-            self.nextReward = self.rewardDist;
         end
         
         function close(self)
