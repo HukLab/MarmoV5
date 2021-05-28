@@ -65,6 +65,7 @@ classdef treadmill_arduino < matlab.mixin.Copyable
             
             self.locationSpace(self.frameCounter,1) = currentTime;
             self.locationSpace(self.frameCounter,5) = rewardState;
+            self.locationSpace(self.frameCounter,6) = self.nextReward;
             % collect position data
             [count, timestamp] = self.readCount();
             
@@ -117,10 +118,17 @@ classdef treadmill_arduino < matlab.mixin.Copyable
         end
         
         function reset(self)
-            IOPort('Write', self.arduinoUno, 'reset');
+            resetCommand = 'r';
+            IOPort('Write', self.arduinoUno, resetCommand, 2);
+%             msg = IOPort('Read', self.arduinoUno);
+%             msg = convertCharsToStrings(char(msg));
+%             if contains(msg, 'encoder reset successful') == 1
+%                 disp('encoder reset successful');
+%             end
             self.frameCounter = 1;
             self.locationSpace(:) = nan;
             IOPort('Flush', self.arduinoUno);
+            self.nextReward = self.rewardDist;
         end
         
         function close(self)
